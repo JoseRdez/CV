@@ -3,245 +3,1270 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>José Rodríguez | Steadicam Operator</title>
-  
+  <title>José Rodríguez — Steadicam Operator & Filmmaker</title>
+  <meta name="description" content="Steadicam Operator & Filmmaker. Creador de MonteCarloFilms. Especializado en cámara, iluminación y eventos deportivos. Madrid.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
+
   <style>
-    /* === RESET BÁSICO === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:    #ebebe7;
+      --red:   #b6282d;
+      --dark:  #111110;
+      --mid:   #5a5a56;
+      --pale:  #d0d0cb;
+      --white: #f5f5f2;
+      --fh:    'Geist', 'Arial', sans-serif;
+      --fb:    'Coolvetica', 'Arial Narrow', 'Arial', sans-serif;
+      --fm:    'Geist Mono', monospace;
     }
 
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Cambia esto por tu fuente personalizada */
-      background-color: var(--bg-color);
+      background: var(--bg);
+      color: var(--dark);
+      font-family: var(--fb);
+      overflow-x: hidden;
     }
 
-    /* === VARIABLES DE COLOR === */
-    :root {
-      --bg-color: #f3f3ee;
-      --red-accent: #c42127;
-      --dark-text: #1a1a1a;
-      --grid-line: rgba(0, 0, 0, 0.05);
-    }
-
-    /* === ESTRUCTURA PRINCIPAL === */
-    .hero-section {
-      background-color: var(--bg-color);
-      /* Patrón de cuadrícula de fondo */
-      background-image: 
-        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-      background-size: 20px 20px;
-      padding: 2rem 1rem;
-      min-height: 100vh;
+    /* ─── NAVIGATION ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
       display: flex;
-      align-items: center;
-    }
-
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr; /* Móvil por defecto: 1 columna */
-      gap: 2rem;
-      width: 100%;
-      padding: 0 1rem;
-    }
-
-    /* === TIPOGRAFÍA Y TEXTOS === */
-    .role-subtitle {
-      color: var(--red-accent);
-      letter-spacing: 2px;
-      font-size: 0.8rem;
-      font-family: monospace; /* Ajusta a tu fuente técnica */
-      border-bottom: 1px solid var(--red-accent);
-      display: inline-block;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-    }
-
-    .main-title {
-      font-size: clamp(4rem, 15vw, 8rem); /* Texto responsivo que no se sale de pantalla */
-      line-height: 0.9;
-      margin: 0 0 1.5rem 0;
-      text-transform: uppercase;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .text-black { color: var(--dark-text); }
-    .text-red { color: var(--red-accent); }
-
-    .description {
-      color: var(--dark-text);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      max-width: 600px;
-      margin-bottom: 2.5rem;
-    }
-
-    .portfolio-link {
-      display: block;
-      font-family: monospace;
-      color: var(--dark-text);
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      border-bottom: 1px solid var(--dark-text);
-      padding-bottom: 0.5rem;
-      margin-bottom: 3rem;
-      width: fit-content;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    .portfolio-link:hover {
-      color: var(--red-accent);
-      border-bottom-color: var(--red-accent);
-    }
-
-    /* === ZONA DE STATS (Años activo, División, Idioma) === */
-    .stats-grid {
-      display: flex;
-      flex-wrap: wrap; 
-      gap: 2rem;
       justify-content: space-between;
-      border-top: 1px solid var(--dark-text); 
-      padding-top: 1.5rem;
+      align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(235,235,231,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(182,40,45,0.12);
     }
+    .nav-logo {
+      font-family: var(--fh);
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dark);
+      z-index: 1001;
+    }
+    .nav-logo em { color: var(--red); font-style: normal; }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: var(--fh);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red); }
 
-    .stat-item {
+    /* Hamburger Button */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    .hamburger {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .hamburger::before, .hamburger::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      transition: transform 0.3s;
+    }
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+
+    /* Open Menu State */
+    .nav-toggle.open .hamburger { background: transparent; }
+    .nav-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
+    .nav-toggle.open .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+    /* ─── HERO (Nuevo Layout Corregido) ──────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr; /* 2 Columnas en escritorio */
+      align-items: center;
+      padding: 8rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+      gap: 2rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.03) 39px, rgba(0,0,0,0.03) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.03) 39px, rgba(0,0,0,0.03) 40px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .hero-main {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      min-width: 100px; /* Evita que se aplasten demasiado */
+      justify-content: center;
     }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--red-accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-family: monospace;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      color: #666;
-      margin-top: 0.5rem;
+    
+    .hero-eyebrow {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
     }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 36px;
+      height: 1px;
+      background: var(--red);
+    }
+    
+    h1.hero-name {
+      font-family: var(--fh);
+      font-weight: 900;
+      font-size: clamp(3.5rem, 10vw, 9rem); /* Escalado dinámico */
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    h1.hero-name .r { color: var(--red); display: block; }
+    
+    .hero-desc {
+      max-width: 480px;
+    }
+    .hero-desc p {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+    
+    .hero-cta {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--fh);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--dark);
+      border-bottom: 1px solid var(--dark);
+      padding-bottom: 0.25rem;
+      transition: color 0.2s, border-color 0.2s;
+      width: max-content;
+    }
+    .hero-cta:hover { color: var(--red); border-color: var(--red); }
+    .hero-cta::after { content: '↓'; }
 
-    /* === GESTIÓN DE LA FOTO === */
-    .profile-photo-circle {
-      width: 200px;
-      height: 200px;
+    /* FOTO DE PERFIL CIRCULAR */
+    .hero-photo-wrap {
       border-radius: 50%;
-      border: 2px solid var(--red-accent);
+      border: 2px solid var(--red);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      font-family: monospace;
-      font-size: 0.9rem;
-      color: #888;
-      overflow: hidden;
-      margin: 2rem auto; /* Centrado en móvil */
       background: rgba(0,0,0,0.03);
+      overflow: hidden;
+      margin: 0 auto;
+      aspect-ratio: 1/1;
     }
-
-    /* Para cuando pongas la etiqueta <img> real */
-    .profile-photo-circle img {
+    .hero-photo-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+    .ph-placeholder-txt-hero {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-align: center;
+      padding: 1rem;
+    }
 
-    /* Control de visibilidad según pantalla */
-    .hero-image-desktop { display: none; }
-    .hero-image-mobile { display: block; }
+    /* Visibilidad de la foto según el dispositivo */
+    .hero-image-mobile { display: none; margin: 2rem 0; }
+    .hero-image-desktop { display: flex; justify-content: flex-end; }
+    .hero-image-desktop .hero-photo-wrap { width: clamp(250px, 100%, 400px); }
+    .hero-image-mobile .hero-photo-wrap { width: 180px; }
 
-    /* === ESCRITORIO (Media Query) === */
-    @media (min-width: 900px) {
-      .hero-container {
-        grid-template-columns: 1.2fr 0.8fr; /* Divide el contenedor en 2 columnas */
+    /* STATS FLEXBOX (Evita solapamientos) */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: flex-start;
+      margin-top: 3rem;
+      border-top: 1px solid var(--pale);
+      padding-top: 1.5rem;
+    }
+    .stat { text-align: left; min-width: 90px; }
+    .stat-num {
+      font-family: var(--fh);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── FILM TICKER ─────────────────────────────────────────── */
+    .film-ticker {
+      background: var(--dark);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      border-top: 2px solid var(--red);
+      border-bottom: 2px solid var(--red);
+    }
+    .film-ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker-move 28s linear infinite;
+      will-change: transform;
+    }
+    .film-ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker-move {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-seg {
+      display: flex;
+      align-items: center;
+      padding: 0.55rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-seg span {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+    .ticker-seg .red { color: var(--red); margin: 0 0.8rem; font-size: 0.5rem; }
+
+    /* ─── SECTION SHELL ──────────────────────────────────────── */
+    section.s { padding: 7rem 4rem; }
+    .s-head {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 4.5rem;
+    }
+    .s-num {
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      color: var(--red);
+      letter-spacing: 0.15em;
+      flex-shrink: 0;
+    }
+    .s-title {
+      font-family: var(--fh);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .s-rule { flex: 1; height: 1px; background: var(--pale); }
+    
+    .s--dark { background: var(--dark); }
+    .s--dark .s-num { color: rgba(182,40,45,0.8); }
+    .s--dark .s-title { color: var(--red); }
+    .s--dark .s-rule { background: rgba(255,255,255,0.07); }
+    
+    .s--red { background: var(--red); }
+    .s--red .s-num { color: rgba(235,235,231,0.5); }
+    .s--red .s-title { color: var(--bg); }
+    .s--red .s-rule { background: rgba(235,235,231,0.2); }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-quote {
+      font-family: var(--fh);
+      font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--dark);
+      border-left: 3px solid var(--red);
+      padding-left: 1.4rem;
+      margin-bottom: 2rem;
+    }
+    .about-body {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+    }
+    .about-body + .about-body { margin-top: 1.2rem; }
+    .about-body strong { color: var(--dark); font-weight: 400; }
+
+    .about-info { display: flex; flex-direction: column; }
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--pale);
+    }
+    .info-row:first-child { border-top: 1px solid var(--pale); }
+    .i-label {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .i-val {
+      font-family: var(--fb);
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      color: var(--dark);
+    }
+    .i-val a { color: var(--dark); text-decoration: none; transition: color 0.2s; }
+    .i-val a:hover { color: var(--red); }
+
+    /* ─── EXPERIENCE ─────────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 180px 1px 1fr;
+      gap: 0 3.5rem;
+      padding: 3.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-item.visible { opacity: 1; transform: translateY(0); }
+
+    .tl-date {
+      font-family: var(--fm);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      text-align: right;
+      padding-top: 0.25rem;
+    }
+    .tl-spine { background: rgba(255,255,255,0.1); position: relative; }
+    .tl-spine::before {
+      content: '';
+      position: absolute;
+      top: 0.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 0 3px rgba(182,40,45,0.2);
+    }
+    .tl-body { padding-top: 0; }
+    .tl-co {
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .tl-role {
+      font-family: var(--fh);
+      font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .tl-desc {
+      font-family: var(--fb);
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.42);
+    }
+    .tl-badge {
+      display: inline-block;
+      margin-top: 1.1rem;
+      padding: 0.28rem 0.8rem;
+      border: 1px solid rgba(182,40,45,0.45);
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ─── EDUCATION ──────────────────────────────────────────── */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .sub-label {
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 2.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--pale); }
+    .edu-list, .cert-list { display: flex; flex-direction: column; gap: 2.2rem; }
+    .edu-item, .cert-item {
+      padding-left: 1.3rem;
+      border-left: 2px solid var(--pale);
+      transition: border-color 0.2s;
+    }
+    .edu-item:hover, .cert-item:hover { border-color: var(--red); }
+    .ed-deg, .ct-name {
+      font-family: var(--fh);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.25rem;
+    }
+    .ed-sch, .ct-iss {
+      font-family: var(--fb);
+      font-size: 0.9rem;
+      letter-spacing: 0.07em;
+      color: var(--mid);
+    }
+    .ed-yr, .ct-yr {
+      font-family: var(--fm);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-top: 0.35rem;
+    }
+
+    /* ─── SKILLS ─────────────────────────────────────────────── */
+    .skills-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: rgba(235,235,231,0.15); }
+    .skill-card {
+      background: var(--red);
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .skill-card:hover { background: #9e2228; }
+    .sk-dot { width: 5px; height: 5px; background: var(--bg); border-radius: 50%; flex-shrink: 0; }
+    .sk-name {
+      font-family: var(--fh);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+    }
+
+    /* ─── PORTFOLIO ──────────────────────────────────────────── */
+    .pf-intro {
+      font-family: var(--fb);
+      font-size: 1.05rem;
+      letter-spacing: 0.07em;
+      line-height: 1.7;
+      color: var(--mid);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+    .pf-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--pale);
+      margin-bottom: 3rem;
+      overflow-x: auto;
+    }
+    .pf-tab {
+      font-family: var(--fh);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+      color: var(--mid);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .pf-tab.active, .pf-tab:hover { color: var(--red); border-bottom-color: var(--red); }
+
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .photo-grid .ph { grid-column: span 1; }
+    .photo-grid .ph.wide { grid-column: span 2; }
+    .ph { position: relative; overflow: hidden; background: var(--pale); cursor: pointer; }
+    .ph-inner {
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      transition: background 0.2s;
+    }
+    .ph.wide .ph-inner { aspect-ratio: 16/9; }
+    .ph:hover .ph-inner { background: #c0c0bb; }
+    .ph img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .ph:hover img { transform: scale(1.04); }
+    .ph-placeholder-icon { font-size: 1.6rem; opacity: 0.25; }
+    .ph-placeholder-txt {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      opacity: 0.6;
+    }
+    .ph-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17,17,16,0);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+      transition: background 0.3s;
+      pointer-events: none;
+    }
+    .ph:hover .ph-overlay { background: rgba(17,17,16,0.45); }
+    .ph-caption {
+      font-family: var(--fh);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .ph:hover .ph-caption { opacity: 1; transform: translateY(0); }
+
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .vid-frame { position: relative; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; }
+    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .vid-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .vid-play {
+      width: 54px;
+      height: 54px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .vid-play::after {
+      content: '';
+      margin-left: 4px;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 17px solid rgba(255,255,255,0.45);
+    }
+    .vid-hint {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+    .vid-title { font-family: var(--fh); font-size: 1rem; font-weight: 700; color: var(--dark); margin-top: 0.9rem; }
+    .vid-meta { font-family: var(--fb); font-size: 0.85rem; letter-spacing: 0.07em; color: var(--mid); margin-top: 0.2rem; }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-headline {
+      font-family: var(--fh);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+    .contact-headline em { color: var(--red); font-style: normal; }
+    .contact-sub {
+      font-family: var(--fb);
+      font-size: 1rem;
+      letter-spacing: 0.07em;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.38);
+      margin-top: 1.8rem;
+      max-width: 400px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0; }
+    .c-link {
+      display: flex;
+      flex-direction: column;
+      padding: 1.4rem 1.6rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-top: none;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .c-link:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .c-link::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--red);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s ease;
+    }
+    .c-link:hover::before { transform: scaleY(1); }
+    .c-link:hover { background: rgba(182,40,45,0.06); border-color: rgba(182,40,45,0.2); }
+    .c-lbl {
+      font-family: var(--fm);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+    }
+    .c-val { font-family: var(--fb); font-size: 1rem; letter-spacing: 0.06em; color: var(--white); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 1.8rem 4rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .foot-name { font-family: var(--fh); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .foot-copy { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.15); }
+
+    /* ─── LIGHTBOX ───────────────────────────────────────────── */
+    #lb { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.94); z-index: 2000; align-items: center; justify-content: center; cursor: pointer; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    #lb-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: var(--fh);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp 0.7s 0.05s ease both; }
+    h1.hero-name  { animation: fadeUp 0.7s 0.15s ease both; }
+    .hero-desc    { animation: fadeUp 0.7s 0.25s ease both; }
+    .hero-stats   { animation: fadeUp 0.7s 0.35s ease both; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE (Mejorado para Móvil) ──────────────────── */
+    @media (max-width: 980px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        gap: 3rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { font-size: 1.4rem; font-weight: 700; color: var(--dark); }
 
-      .hero-image-mobile { display: none; } /* Ocultamos la foto en medio del texto */
+      /* Ajustes Hero para móvil */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 8rem 1.5rem 5rem 1.5rem;
+      }
+      .hero-image-desktop { display: none; }
+      .hero-image-mobile { display: block; }
+
+      .hero, section.s, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      section.s { padding-top: 5rem; padding-bottom: 5rem; }
       
-      .hero-image-desktop { 
-        display: flex; 
-        justify-content: flex-end; 
-      }
+      .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2.5rem 0; }
+      .tl-spine { display: none; }
+      .tl-date { text-align: left; padding-top: 0; margin-bottom: 0.5rem; }
+      
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid .ph.wide { grid-column: span 1; }
+      .ph.wide .ph-inner { aspect-ratio: 4/3; }
+      .video-grid { grid-template-columns: 1fr; }
+    }
 
-      .profile-photo-circle {
-        width: 380px; /* Foto masiva en ordenador */
-        height: 380px;
-        margin: 0;
-      }
+    @media (max-width: 600px) {
+      h1.hero-name { font-size: clamp(3.2rem, 16vw, 4.5rem); }
+      .hero-stats { gap: 1.5rem; justify-content: space-between; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .skills-wrap { grid-template-columns: 1fr; }
+      .s-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 3rem; }
+      .s-rule { width: 100%; height: 1px; flex: none; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero-section">
-    <div class="hero-container">
-      
-      <!-- CONTENIDO TEXTUAL (Columna izquierda en escritorio / Todo en móvil) -->
-      <div class="hero-text-content">
-        <p class="role-subtitle">Steadicam Operator · Filmmaker · Madrid</p>
-        
-        <h1 class="main-title">
-          <span class="text-black">JOSÉ</span><br>
-          <span class="text-red">RODRÍGUEZ</span>
-        </h1>
+<nav aria-label="Navegación principal">
+  <div class="nav-logo">José <em>Rodríguez</em></div>
+  
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <span class="hamburger"></span>
+  </button>
 
-        <!-- Imagen visible solo en MÓVIL (intercalada para mejor lectura) -->
-        <div class="hero-image-mobile">
-          <div class="profile-photo-circle">
-            <!-- Sustituye el span por tu etiqueta <img> cuando la tengas -->
-            <span class="photo-placeholder">FOTO<br>PERFIL</span>
-          </div>
+  <ul class="nav-links">
+    <li><a href="#about">Perfil</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#education">Formación</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="hero-main">
+    <div class="hero-eyebrow">Steadicam Operator · Filmmaker · Madrid</div>
+    <h1 class="hero-name">
+      JOSÉ
+      <span class="r">RODRÍGUEZ</span>
+    </h1>
+    
+    <div class="hero-image-mobile">
+      <div class="hero-photo-wrap">
+        <div class="ph-placeholder-txt-hero">Foto<br>Perfil</div>
+      </div>
+    </div>
+
+    <div class="hero-desc">
+      <p>Creador de <strong>MonteCarloFilms</strong>. Especializado en Steadicam & operación de cámara. Experiencia en eventos deportivos de élite, iluminación y montaje.</p>
+    </div>
+    
+    <a class="hero-cta" href="#portfolio">Ver portfolio</a>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-lbl">Años activo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1ª</div>
+        <div class="stat-lbl">División RFEF</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">B2</div>
+        <div class="stat-lbl">Cambridge</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image-desktop">
+    <div class="hero-photo-wrap">
+      <div class="ph-placeholder-txt-hero">Foto<br>Perfil</div>
+    </div>
+  </div>
+</header>
+
+<div class="film-ticker" aria-hidden="true">
+  <div class="film-ticker-track" id="ticker">
+    <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Steadicam Operator</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Camera Op — 1ª RFEF</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>DaVinci Resolve V.21</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Eventos Deportivos</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Iluminación & Plató</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>After Effects</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Movie Magic Schedule X</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Cambridge B2 First</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Filmmaker</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Madrid, España</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Steadicam Operator</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Camera Op — 1ª RFEF</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>DaVinci Resolve V.21</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Eventos Deportivos</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Iluminación & Plató</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>After Effects</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Movie Magic Schedule X</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Cambridge B2 First</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Filmmaker</span><span class="red">◆</span></div>
+    <div class="ticker-seg"><span>Madrid, España</span><span class="red">◆</span></div>
+  </div>
+</div>
+
+<section class="s" id="about">
+  <div class="s-head">
+    <span class="s-num">01</span>
+    <h2 class="s-title">Perfil</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p class="about-quote">"La imagen en movimiento cuenta lo que las palabras no pueden."</p>
+      <p class="about-body">Filmmaker y operador de Steadicam con experiencia en producción audiovisual, eventos deportivos de alto nivel, iluminación y montaje. Fundador de <strong>MonteCarloFilms</strong>, desde donde desarrollo proyectos propios con una visión cinematográfica definida.</p>
+      <p class="about-body" style="margin-top:1.2rem;">Con formación técnica en la <strong>Escuela CEV</strong> y certificación especializada en Steadicam por la <strong>Escuela CES</strong>, combino el dominio técnico con una sensibilidad estética que se refleja en cada toma.</p>
+    </div>
+    <div class="about-info">
+      <div class="info-row">
+        <span class="i-label">Teléfono</span>
+        <span class="i-val"><a href="tel:+34685044900">+34 685 044 900</a></span>
+      </div>
+      <div class="info-row">
+        <span class="i-label">Email</span>
+        <span class="i-val"><a href="mailto:joserdez011@gmail.com">joserdez011@gmail.com</a></span>
+      </div>
+      <div class="info-row">
+        <span class="i-label">Web</span>
+        <span class="i-val"><a href="https://montecarlofilms.es" target="_blank" rel="noopener">montecarlofilms.es</a></span>
+      </div>
+      <div class="info-row">
+        <span class="i-label">Instagram</span>
+        <span class="i-val"><a href="https://instagram.com/joserodriguez.mov" target="_blank" rel="noopener">@joserodriguez.mov</a></span>
+      </div>
+      <div class="info-row">
+        <span class="i-label">Ubicación</span>
+        <span class="i-val">Madrid, España</span>
+      </div>
+      <div class="info-row">
+        <span class="i-label">Disponibilidad</span>
+        <span class="i-val">Abierto a proyectos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--dark" id="experience">
+  <div class="s-head">
+    <span class="s-num">02</span>
+    <h2 class="s-title">Experiencia</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">2025 — Presente</div>
+      <div class="tl-spine"></div>
+      <div class="tl-body">
+        <div class="tl-co">PEVYPE</div>
+        <div class="tl-role">Operador de Cámara en Deportes</div>
+        <div class="tl-desc">Operador de cámara en eventos deportivos de alto nivel. Retransmisión de partidos de baloncesto (1ª FEB) y fútbol (1ª RFEF), cubriendo competiciones de máxima exigencia técnica y narrativa visual en directo.</div>
+        <span class="tl-badge">Actualidad</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2024 — 2025</div>
+      <div class="tl-spine"></div>
+      <div class="tl-body">
+        <div class="tl-co">Escuela CEV</div>
+        <div class="tl-role">Técnico Departamento de Logística</div>
+        <div class="tl-desc">Gestión y administración del material audiovisual del departamento. Control de inventario, mantenimiento de equipos y coordinación en la preparación de rodajes y proyectos de producción internos.</div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">2024</div>
+      <div class="tl-spine"></div>
+      <div class="tl-body">
+        <div class="tl-co">7yACCIÓN</div>
+        <div class="tl-role">Técnico de Iluminación & Cámara</div>
+        <div class="tl-desc">Prácticas profesionales en entorno de producción real. Montaje de sets de rodaje y operación de cámara en plató. Trabajo en iluminación para producciones audiovisuales con equipo técnico especializado.</div>
+        <span class="tl-badge">Prácticas</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="s" id="education">
+  <div class="s-head">
+    <span class="s-num">03</span>
+    <h2 class="s-title">Formación</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="edu-grid">
+    <div>
+      <div class="sub-label">Educación</div>
+      <div class="edu-list">
+        <div class="edu-item reveal">
+          <div class="ed-deg">Grado Superior Técnico Audiovisual</div>
+          <div class="ed-sch">Escuela CEV, Madrid</div>
+          <div class="ed-yr">2022 — 2024</div>
         </div>
-
-        <p class="description">
-          Creador de <strong>MonteCarloFilms</strong>. Especializado en Steadicam & operación de cámara. Experiencia en eventos deportivos de élite, iluminación y montaje.
-        </p>
-
-        <a href="#portfolio" class="portfolio-link">VER PORTFOLIO ↓</a>
-
-        <!-- Stats arreglados con Flexbox -->
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-number">3+</span>
-            <span class="stat-label">Años activo</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">1ª</span>
-            <span class="stat-label">División RFEF</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">B2</span>
-            <span class="stat-label">Cambridge</span>
-          </div>
+        <div class="edu-item reveal">
+          <div class="ed-deg">Operador de Steadicam</div>
+          <div class="ed-sch">Escuela CES</div>
+          <div class="ed-yr">2025</div>
         </div>
       </div>
-
-      <!-- IMAGEN DE ESCRITORIO (Columna derecha / Oculta en móvil) -->
-      <div class="hero-image-desktop">
-        <div class="profile-photo-circle">
-          <!-- Sustituye el span por tu etiqueta <img> cuando la tengas -->
-          <span class="photo-placeholder">FOTO<br>PERFIL</span>
+    </div>
+    <div>
+      <div class="sub-label">Certificaciones</div>
+      <div class="cert-list">
+        <div class="cert-item reveal">
+          <div class="ct-name">Cambridge B2 First (FCE)</div>
+          <div class="ct-iss">Cambridge Assessment English</div>
+          <div class="ct-yr">Inglés B2</div>
         </div>
+        <div class="cert-item reveal">
+          <div class="ct-name">Movie Magic Scheduling X</div>
+          <div class="ct-iss">Intensivo — ECAM</div>
+          <div class="ct-yr">2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s s--red" id="skills">
+  <div class="s-head">
+    <span class="s-num">04</span>
+    <h2 class="s-title">Skills</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">DaVinci Resolve V.21</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Adobe After Effects</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Adobe Photoshop</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Adobe Audition</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Movie Magic Schedule X</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Google Suite</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Steadicam</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Iluminación en Plató</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Operación de Cámara</div></div>
+    <div class="skill-card"><div class="sk-dot"></div><div class="sk-name">Permiso B · Vehículo Propio</div></div>
+  </div>
+</section>
+
+<section class="s" id="portfolio">
+  <div class="s-head">
+    <span class="s-num">05</span>
+    <h2 class="s-title">Portfolio</h2>
+    <div class="s-rule"></div>
+  </div>
+
+  <p class="pf-intro">Una selección de trabajos como operador de cámara, filmmaker y proyectos propios a través de MonteCarloFilms.</p>
+
+  <div class="pf-tabs">
+    <button class="pf-tab active" onclick="switchTab(this,'photos')">Fotografía</button>
+    <button class="pf-tab" onclick="switchTab(this,'videos')">Vídeo</button>
+  </div>
+
+  <div class="tab-pane active" id="tab-photos">
+    <div class="photo-grid">
+
+      <div class="ph wide" onclick="openLb(this)">
+        <div class="ph-inner">
+          <div class="ph-placeholder-icon">📷</div>
+          <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto1.jpg</div>
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Proyecto destacado</span></div>
+      </div>
+
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <div class="ph-placeholder-icon">📷</div>
+          <div class="ph-placeholder-txt">img/foto2.jpg</div>
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Evento deportivo</span></div>
+      </div>
+
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <div class="ph-placeholder-icon">📷</div>
+          <div class="ph-placeholder-txt">img/foto3.jpg</div>
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Plató</span></div>
+      </div>
+
+      <div class="ph wide" onclick="openLb(this)">
+        <div class="ph-inner">
+          <div class="ph-placeholder-icon">📷</div>
+          <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto4.jpg</div>
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">MonteCarloFilms</span></div>
+      </div>
+
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <div class="ph-placeholder-icon">📷</div>
+          <div class="ph-placeholder-txt">img/foto5.jpg</div>
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Steadicam rig</span></div>
       </div>
 
     </div>
-  </section>
+  </div>
+
+  <div class="tab-pane" id="tab-videos">
+    <div class="video-grid">
+
+      <div class="vid-wrap">
+        <div class="vid-frame">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
+          </div>
+        </div>
+        <div class="vid-title">Título del Proyecto</div>
+        <div class="vid-meta">Steadicam · 2024</div>
+      </div>
+
+      <div class="vid-wrap">
+        <div class="vid-frame">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
+          </div>
+        </div>
+        <div class="vid-title">Título del Proyecto</div>
+        <div class="vid-meta">Eventos Deportivos · 2025</div>
+      </div>
+
+      <div class="vid-wrap">
+        <div class="vid-frame">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
+          </div>
+        </div>
+        <div class="vid-title">Título del Proyecto</div>
+        <div class="vid-meta">MonteCarloFilms · 2025</div>
+      </div>
+
+      <div class="vid-wrap">
+        <div class="vid-frame">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
+          </div>
+        </div>
+        <div class="vid-title">Título del Proyecto</div>
+        <div class="vid-meta">Iluminación & Plató · 2024</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="s s--dark" id="contact">
+  <div class="s-head">
+    <span class="s-num">06</span>
+    <h2 class="s-title">Contacto</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <h3 class="contact-headline">¿Trabajamos<br><em>juntos?</em></h3>
+      <p class="contact-sub">Disponible para proyectos de cine, publicidad, eventos deportivos y cualquier producción que necesite un ojo preciso detrás de la cámara.</p>
+    </div>
+    <div class="contact-links">
+      <a class="c-link" href="tel:+34685044900">
+        <div class="c-lbl">Teléfono</div>
+        <div class="c-val">+34 685 044 900</div>
+      </a>
+      <a class="c-link" href="mailto:joserdez011@gmail.com">
+        <div class="c-lbl">Email</div>
+        <div class="c-val">joserdez011@gmail.com</div>
+      </a>
+      <a class="c-link" href="https://montecarlofilms.es" target="_blank" rel="noopener">
+        <div class="c-lbl">Portfolio web</div>
+        <div class="c-val">montecarlofilms.es</div>
+      </a>
+      <a class="c-link" href="https://instagram.com/joserodriguez.mov" target="_blank" rel="noopener">
+        <div class="c-lbl">Instagram</div>
+        <div class="c-val">@joserodriguez.mov</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-name">José Rodríguez © 2026</div>
+  <div class="foot-copy">Steadicam Operator · Filmmaker · Madrid</div>
+</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="closeLb(event)">
+  <div id="lb-close" onclick="closeLb(null)" aria-label="Cerrar">✕ Cerrar</div>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  /* ── Mobile Menu Toggle ── */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-links a');
+
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Tab switching ── */
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pf-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* ── Lightbox ── */
+  function openLb(el) {
+    var img = el.querySelector('img');
+    if (!img) return;
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb-img').alt = img.alt;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb(e) {
+    if (e && e.target !== document.getElementById('lb') && e.target !== document.getElementById('lb-close')) return;
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLb(null);
+  });
+
+  /* ── Scroll reveal ── */
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.tl-item, .reveal').forEach(function(el) {
+    io.observe(el);
+  });
+
+  /* ── Smooth active nav link ── */
+  var sections = document.querySelectorAll('section[id], header[id]');
+  var navLinksDesktop = document.querySelectorAll('.nav-links a');
+  var navIo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        navLinksDesktop.forEach(function(a) {
+          a.style.color = a.getAttribute('href') === '#' + id ? 'var(--red)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(function(s) { navIo.observe(s); });
+</script>
 
 </body>
 </html>
