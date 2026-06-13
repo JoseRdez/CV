@@ -6,7 +6,6 @@
   <title>José Rodríguez — Steadicam Operator & Filmmaker</title>
   <meta name="description" content="Steadicam Operator & Filmmaker. Creador de MonteCarloFilms. Especializado en cámara, iluminación y eventos deportivos. Madrid.">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -41,12 +40,12 @@
     nav {
       position: fixed;
       inset: 0 0 auto 0;
-      z-index: 200;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.1rem 4rem;
-      background: rgba(235,235,231,0.82);
+      background: rgba(235,235,231,0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(182,40,45,0.12);
@@ -58,8 +57,10 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--dark);
+      z-index: 1001;
     }
     .nav-logo em { color: var(--red); font-style: normal; }
+    
     .nav-links {
       list-style: none;
       display: flex;
@@ -77,17 +78,50 @@
     }
     .nav-links a:hover { color: var(--red); }
 
+    /* Hamburger Button */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    .hamburger {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .hamburger::before, .hamburger::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--dark);
+      transition: transform 0.3s;
+    }
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+
+    /* Open Menu State */
+    .nav-toggle.open .hamburger { background: transparent; }
+    .nav-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
+    .nav-toggle.open .hamburger::after { transform: rotate(-45deg); top: 0; }
+
     /* ─── HERO ───────────────────────────────────────────────── */
     .hero {
       min-height: 100svh;
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-rows: 1fr auto;
-      padding: 8rem 4rem 5rem;
+      padding: 9rem 4rem 5rem;
       position: relative;
       overflow: hidden;
     }
-    /* subtle paper texture via pseudo */
     .hero::before {
       content: '';
       position: absolute;
@@ -104,6 +138,36 @@
       flex-direction: column;
       justify-content: flex-end;
     }
+    
+    /* Profile Avatar */
+    .hero-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--pale);
+      border: 2px solid var(--red);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-avatar-placeholder {
+      font-family: var(--fm);
+      font-size: 0.5rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-align: center;
+      padding: 0.5rem;
+    }
+
     .hero-eyebrow {
       font-family: var(--fm);
       font-size: 0.65rem;
@@ -125,14 +189,14 @@
     h1.hero-name {
       font-family: var(--fh);
       font-weight: 900;
-      font-size: clamp(4.5rem, 13vw, 12rem);
+      font-size: clamp(4rem, 11vw, 12rem);
       line-height: 0.88;
       letter-spacing: -0.03em;
       color: var(--dark);
     }
     h1.hero-name .r { color: var(--red); display: block; }
     .hero-desc {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       max-width: 480px;
     }
     .hero-desc p {
@@ -161,7 +225,6 @@
     .hero-cta:hover { color: var(--red); border-color: var(--red); }
     .hero-cta::after { content: '↓'; }
 
-    /* Stats column */
     .hero-stats {
       grid-column: 2;
       grid-row: 1;
@@ -172,9 +235,7 @@
       gap: 2.5rem;
       padding-left: 4rem;
     }
-    .stat {
-      text-align: right;
-    }
+    .stat { text-align: right; }
     .stat-num {
       font-family: var(--fh);
       font-size: 2.8rem;
@@ -191,7 +252,6 @@
       margin-top: 0.3rem;
     }
 
-    /* Scroll indicator */
     .hero-scroll {
       grid-column: 1 / -1;
       grid-row: 2;
@@ -218,7 +278,7 @@
       color: var(--mid);
     }
 
-    /* ─── FILM TICKER (signature element) ───────────────────── */
+    /* ─── FILM TICKER ─────────────────────────────────────────── */
     .film-ticker {
       background: var(--dark);
       padding: 0;
@@ -256,9 +316,7 @@
     .ticker-seg .red { color: var(--red); margin: 0 0.8rem; font-size: 0.5rem; }
 
     /* ─── SECTION SHELL ──────────────────────────────────────── */
-    section.s {
-      padding: 7rem 4rem;
-    }
+    section.s { padding: 7rem 4rem; }
     .s-head {
       display: flex;
       align-items: center;
@@ -280,17 +338,13 @@
       letter-spacing: -0.02em;
       flex-shrink: 0;
     }
-    .s-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--pale);
-    }
-    /* dark-bg overrides */
+    .s-rule { flex: 1; height: 1px; background: var(--pale); }
+    
     .s--dark { background: var(--dark); }
     .s--dark .s-num { color: rgba(182,40,45,0.8); }
     .s--dark .s-title { color: var(--red); }
     .s--dark .s-rule { background: rgba(255,255,255,0.07); }
-    /* red-bg overrides */
+    
     .s--red { background: var(--red); }
     .s--red .s-num { color: rgba(235,235,231,0.5); }
     .s--red .s-title { color: var(--bg); }
@@ -323,10 +377,7 @@
     .about-body + .about-body { margin-top: 1.2rem; }
     .about-body strong { color: var(--dark); font-weight: 400; }
 
-    .about-info {
-      display: flex;
-      flex-direction: column;
-    }
+    .about-info { display: flex; flex-direction: column; }
     .info-row {
       display: flex;
       flex-direction: column;
@@ -348,11 +399,7 @@
       letter-spacing: 0.06em;
       color: var(--dark);
     }
-    .i-val a {
-      color: var(--dark);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .i-val a { color: var(--dark); text-decoration: none; transition: color 0.2s; }
     .i-val a:hover { color: var(--red); }
 
     /* ─── EXPERIENCE ─────────────────────────────────────────── */
@@ -378,10 +425,7 @@
       text-align: right;
       padding-top: 0.25rem;
     }
-    .tl-spine {
-      background: rgba(255,255,255,0.1);
-      position: relative;
-    }
+    .tl-spine { background: rgba(255,255,255,0.1); position: relative; }
     .tl-spine::before {
       content: '';
       position: absolute;
@@ -431,11 +475,7 @@
     }
 
     /* ─── EDUCATION ──────────────────────────────────────────── */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-    }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
     .sub-label {
       font-family: var(--fm);
       font-size: 0.62rem;
@@ -447,17 +487,8 @@
       align-items: center;
       gap: 1rem;
     }
-    .sub-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--pale);
-    }
-    .edu-list, .cert-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-    }
+    .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--pale); }
+    .edu-list, .cert-list { display: flex; flex-direction: column; gap: 2.2rem; }
     .edu-item, .cert-item {
       padding-left: 1.3rem;
       border-left: 2px solid var(--pale);
@@ -496,13 +527,7 @@
       transition: background 0.2s;
     }
     .skill-card:hover { background: #9e2228; }
-    .sk-dot {
-      width: 5px;
-      height: 5px;
-      background: var(--bg);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .sk-dot { width: 5px; height: 5px; background: var(--bg); border-radius: 50%; flex-shrink: 0; }
     .sk-name {
       font-family: var(--fh);
       font-size: 0.8rem;
@@ -527,6 +552,7 @@
       gap: 0;
       border-bottom: 1px solid var(--pale);
       margin-bottom: 3rem;
+      overflow-x: auto;
     }
     .pf-tab {
       font-family: var(--fh);
@@ -542,27 +568,17 @@
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
       transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
     }
     .pf-tab.active, .pf-tab:hover { color: var(--red); border-bottom-color: var(--red); }
 
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    /* Photo grid */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.75rem;
-    }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
     .photo-grid .ph { grid-column: span 1; }
     .photo-grid .ph.wide { grid-column: span 2; }
-
-    .ph {
-      position: relative;
-      overflow: hidden;
-      background: var(--pale);
-      cursor: pointer;
-    }
+    .ph { position: relative; overflow: hidden; background: var(--pale); cursor: pointer; }
     .ph-inner {
       aspect-ratio: 4/3;
       display: flex;
@@ -583,10 +599,7 @@
       transition: transform 0.5s ease;
     }
     .ph:hover img { transform: scale(1.04); }
-    .ph-placeholder-icon {
-      font-size: 1.6rem;
-      opacity: 0.25;
-    }
+    .ph-placeholder-icon { font-size: 1.6rem; opacity: 0.25; }
     .ph-placeholder-txt {
       font-family: var(--fm);
       font-size: 0.58rem;
@@ -595,7 +608,6 @@
       color: var(--mid);
       opacity: 0.6;
     }
-    /* Hover overlay */
     .ph-overlay {
       position: absolute;
       inset: 0;
@@ -620,26 +632,9 @@
     }
     .ph:hover .ph-caption { opacity: 1; transform: translateY(0); }
 
-    /* Video grid */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    .vid-wrap {}
-    .vid-frame {
-      position: relative;
-      aspect-ratio: 16/9;
-      background: var(--dark);
-      overflow: hidden;
-    }
-    .vid-frame iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .vid-frame { position: relative; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; }
+    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
     .vid-placeholder {
       position: absolute;
       inset: 0;
@@ -672,28 +667,11 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.2);
     }
-    .vid-title {
-      font-family: var(--fh);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-top: 0.9rem;
-    }
-    .vid-meta {
-      font-family: var(--fb);
-      font-size: 0.85rem;
-      letter-spacing: 0.07em;
-      color: var(--mid);
-      margin-top: 0.2rem;
-    }
+    .vid-title { font-family: var(--fh); font-size: 1rem; font-weight: 700; color: var(--dark); margin-top: 0.9rem; }
+    .vid-meta { font-family: var(--fb); font-size: 0.85rem; letter-spacing: 0.07em; color: var(--mid); margin-top: 0.2rem; }
 
     /* ─── CONTACT ────────────────────────────────────────────── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
     .contact-headline {
       font-family: var(--fh);
       font-size: clamp(2.5rem, 6vw, 5rem);
@@ -702,10 +680,7 @@
       letter-spacing: -0.03em;
       color: var(--white);
     }
-    .contact-headline em {
-      color: var(--red);
-      font-style: normal;
-    }
+    .contact-headline em { color: var(--red); font-style: normal; }
     .contact-sub {
       font-family: var(--fb);
       font-size: 1rem;
@@ -715,11 +690,7 @@
       margin-top: 1.8rem;
       max-width: 400px;
     }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    .contact-links { display: flex; flex-direction: column; gap: 0; }
     .c-link {
       display: flex;
       flex-direction: column;
@@ -743,10 +714,7 @@
       transition: transform 0.25s ease;
     }
     .c-link:hover::before { transform: scaleY(1); }
-    .c-link:hover {
-      background: rgba(182,40,45,0.06);
-      border-color: rgba(182,40,45,0.2);
-    }
+    .c-link:hover { background: rgba(182,40,45,0.06); border-color: rgba(182,40,45,0.2); }
     .c-lbl {
       font-family: var(--fm);
       font-size: 0.58rem;
@@ -755,12 +723,7 @@
       color: var(--red);
       margin-bottom: 0.3rem;
     }
-    .c-val {
-      font-family: var(--fb);
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-      color: var(--white);
-    }
+    .c-val { font-family: var(--fb); font-size: 1rem; letter-spacing: 0.06em; color: var(--white); }
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
@@ -771,38 +734,13 @@
       justify-content: space-between;
       align-items: center;
     }
-    .foot-name {
-      font-family: var(--fh);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-    }
-    .foot-copy {
-      font-family: var(--fm);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.15);
-    }
+    .foot-name { font-family: var(--fh); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .foot-copy { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.15); }
 
     /* ─── LIGHTBOX ───────────────────────────────────────────── */
-    #lb {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,10,0.94);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
+    #lb { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.94); z-index: 2000; align-items: center; justify-content: center; cursor: pointer; }
     #lb.open { display: flex; }
-    #lb img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-    }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
     #lb-close {
       position: absolute;
       top: 1.5rem;
@@ -821,43 +759,62 @@
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-eyebrow { animation: fadeUp 0.7s 0.05s ease both; }
+    .hero-avatar  { animation: fadeUp 0.7s 0.05s ease both; }
+    .hero-eyebrow { animation: fadeUp 0.7s 0.10s ease both; }
     h1.hero-name  { animation: fadeUp 0.7s 0.15s ease both; }
     .hero-desc    { animation: fadeUp 0.7s 0.25s ease both; }
     .hero-stats   { animation: fadeUp 0.7s 0.35s ease both; }
     .hero-scroll  { animation: fadeUp 0.7s 0.45s ease both; }
 
-    /* reveal on scroll */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    /* ─── RESPONSIVE (Mejorado para Móvil) ──────────────────── */
     @media (max-width: 980px) {
-      nav { padding: 1rem 2rem; }
-      .nav-links { gap: 1.5rem; }
-      .hero, section.s, footer { padding-left: 2rem; padding-right: 2rem; }
-      .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+      .nav-links.open { transform: translateY(0); }
+      .nav-links a { font-size: 1.4rem; font-weight: 700; color: var(--dark); }
+
+      .hero, section.s, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      section.s { padding-top: 5rem; padding-bottom: 5rem; }
+      
+      .hero { grid-template-columns: 1fr; padding-top: 8rem; }
       .hero-stats { grid-column: 1; grid-row: 2; flex-direction: row; justify-content: flex-start; align-items: flex-start; padding-left: 0; gap: 2.5rem; margin-top: 2rem; }
       .stat { text-align: left; }
-      .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .tl-item { grid-template-columns: 1fr; gap: 0.8rem; }
+      
+      .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2.5rem 0; }
       .tl-spine { display: none; }
-      .tl-date { text-align: left; }
+      .tl-date { text-align: left; padding-top: 0; margin-bottom: 0.5rem; }
+      
       .photo-grid { grid-template-columns: 1fr 1fr; }
       .photo-grid .ph.wide { grid-column: span 1; }
       .ph.wide .ph-inner { aspect-ratio: 4/3; }
       .video-grid { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 600px) {
-      .nav-links { display: none; }
       h1.hero-name { font-size: clamp(3.5rem, 18vw, 5rem); }
+      .hero-avatar { width: 85px; height: 85px; margin-bottom: 1.5rem; }
       .hero-stats { flex-wrap: wrap; gap: 1.5rem 3rem; }
       .photo-grid { grid-template-columns: 1fr; }
-      .skills-wrap { grid-template-columns: 1fr 1fr; }
+      .skills-wrap { grid-template-columns: 1fr; }
+      .s-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 3rem; }
+      .s-rule { width: 100%; height: 1px; flex: none; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -867,9 +824,13 @@
 </head>
 <body>
 
-<!-- ── NAV ────────────────────────────────────────────────────── -->
 <nav aria-label="Navegación principal">
   <div class="nav-logo">José <em>Rodríguez</em></div>
+  
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <span class="hamburger"></span>
+  </button>
+
   <ul class="nav-links">
     <li><a href="#about">Perfil</a></li>
     <li><a href="#experience">Experiencia</a></li>
@@ -880,9 +841,13 @@
   </ul>
 </nav>
 
-<!-- ── HERO ───────────────────────────────────────────────────── -->
 <header class="hero" id="hero">
   <div class="hero-main">
+    
+    <div class="hero-avatar">
+      <div class="hero-avatar-placeholder">Foto<br>Perfil</div>
+    </div>
+
     <div class="hero-eyebrow">Steadicam Operator · Filmmaker · Madrid</div>
     <h1 class="hero-name">
       JOSÉ
@@ -915,10 +880,8 @@
   </div>
 </header>
 
-<!-- ── FILM TICKER ─────────────────────────────────────────────── -->
 <div class="film-ticker" aria-hidden="true">
   <div class="film-ticker-track" id="ticker">
-    <!-- Items duplicated in JS for infinite loop -->
     <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Steadicam Operator</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Camera Op — 1ª RFEF</span><span class="red">◆</span></div>
@@ -930,7 +893,6 @@
     <div class="ticker-seg"><span>Cambridge B2 First</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Filmmaker</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Madrid, España</span><span class="red">◆</span></div>
-    <!-- duplicate for seamless loop -->
     <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Steadicam Operator</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Camera Op — 1ª RFEF</span><span class="red">◆</span></div>
@@ -945,7 +907,6 @@
   </div>
 </div>
 
-<!-- ── ABOUT ───────────────────────────────────────────────────── -->
 <section class="s" id="about">
   <div class="s-head">
     <span class="s-num">01</span>
@@ -987,7 +948,6 @@
   </div>
 </section>
 
-<!-- ── EXPERIENCE ──────────────────────────────────────────────── -->
 <section class="s s--dark" id="experience">
   <div class="s-head">
     <span class="s-num">02</span>
@@ -1031,7 +991,6 @@
   </div>
 </section>
 
-<!-- ── EDUCATION ───────────────────────────────────────────────── -->
 <section class="s" id="education">
   <div class="s-head">
     <span class="s-num">03</span>
@@ -1072,7 +1031,6 @@
   </div>
 </section>
 
-<!-- ── SKILLS ─────────────────────────────────────────────────── -->
 <section class="s s--red" id="skills">
   <div class="s-head">
     <span class="s-num">04</span>
@@ -1093,7 +1051,6 @@
   </div>
 </section>
 
-<!-- ── PORTFOLIO ───────────────────────────────────────────────── -->
 <section class="s" id="portfolio">
   <div class="s-head">
     <span class="s-num">05</span>
@@ -1108,19 +1065,10 @@
     <button class="pf-tab" onclick="switchTab(this,'videos')">Vídeo</button>
   </div>
 
-  <!-- PHOTOS TAB -->
-  <!-- ─────────────────────────────────────────────────────────────
-       CÓMO AÑADIR FOTOS:
-       Sube las imágenes a tu repositorio de GitHub (ej. carpeta /img/)
-       y reemplaza los comentarios <!-- img src --> con:
-       <img src="img/tu-foto.jpg" alt="Descripción">
-       Elimina el div ph-inner cuando añadas la imagen real.
-  ─────────────────────────────────────────────────────────────── -->
   <div class="tab-pane active" id="tab-photos">
     <div class="photo-grid">
 
       <div class="ph wide" onclick="openLb(this)">
-        <!-- <img src="img/foto1.jpg" alt="Rodaje con Steadicam"> -->
         <div class="ph-inner">
           <div class="ph-placeholder-icon">📷</div>
           <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto1.jpg</div>
@@ -1129,7 +1077,6 @@
       </div>
 
       <div class="ph" onclick="openLb(this)">
-        <!-- <img src="img/foto2.jpg" alt="Evento deportivo"> -->
         <div class="ph-inner">
           <div class="ph-placeholder-icon">📷</div>
           <div class="ph-placeholder-txt">img/foto2.jpg</div>
@@ -1138,7 +1085,6 @@
       </div>
 
       <div class="ph" onclick="openLb(this)">
-        <!-- <img src="img/foto3.jpg" alt="Plató"> -->
         <div class="ph-inner">
           <div class="ph-placeholder-icon">📷</div>
           <div class="ph-placeholder-txt">img/foto3.jpg</div>
@@ -1147,7 +1093,6 @@
       </div>
 
       <div class="ph wide" onclick="openLb(this)">
-        <!-- <img src="img/foto4.jpg" alt="MonteCarloFilms"> -->
         <div class="ph-inner">
           <div class="ph-placeholder-icon">📷</div>
           <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto4.jpg</div>
@@ -1156,7 +1101,6 @@
       </div>
 
       <div class="ph" onclick="openLb(this)">
-        <!-- <img src="img/foto5.jpg" alt="Steadicam rig"> -->
         <div class="ph-inner">
           <div class="ph-placeholder-icon">📷</div>
           <div class="ph-placeholder-txt">img/foto5.jpg</div>
@@ -1167,20 +1111,11 @@
     </div>
   </div>
 
-  <!-- VIDEOS TAB -->
-  <!-- ─────────────────────────────────────────────────────────────
-       CÓMO AÑADIR VÍDEOS DE YOUTUBE:
-       1. Obtén el ID del vídeo de YouTube (ej. dQw4w9WgXcQ)
-       2. Descomenta el iframe y reemplaza VIDEO_ID
-       3. Actualiza .vid-title y .vid-meta con el título real
-       4. Elimina el div .vid-placeholder cuando tengas el iframe
-  ─────────────────────────────────────────────────────────────── -->
   <div class="tab-pane" id="tab-videos">
     <div class="video-grid">
 
       <div class="vid-wrap">
         <div class="vid-frame">
-          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Título vídeo" allowfullscreen loading="lazy"></iframe> -->
           <div class="vid-placeholder">
             <div class="vid-play"></div>
             <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
@@ -1192,7 +1127,6 @@
 
       <div class="vid-wrap">
         <div class="vid-frame">
-          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Título vídeo" allowfullscreen loading="lazy"></iframe> -->
           <div class="vid-placeholder">
             <div class="vid-play"></div>
             <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
@@ -1204,7 +1138,6 @@
 
       <div class="vid-wrap">
         <div class="vid-frame">
-          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Título vídeo" allowfullscreen loading="lazy"></iframe> -->
           <div class="vid-placeholder">
             <div class="vid-play"></div>
             <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
@@ -1216,7 +1149,6 @@
 
       <div class="vid-wrap">
         <div class="vid-frame">
-          <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Título vídeo" allowfullscreen loading="lazy"></iframe> -->
           <div class="vid-placeholder">
             <div class="vid-play"></div>
             <div class="vid-hint">youtube.com/embed/VIDEO_ID</div>
@@ -1230,7 +1162,6 @@
   </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────────────────── -->
 <section class="s s--dark" id="contact">
   <div class="s-head">
     <span class="s-num">06</span>
@@ -1263,20 +1194,36 @@
   </div>
 </section>
 
-<!-- ── FOOTER ──────────────────────────────────────────────────── -->
 <footer>
   <div class="foot-name">José Rodríguez © 2026</div>
   <div class="foot-copy">Steadicam Operator · Filmmaker · Madrid</div>
 </footer>
 
-<!-- ── LIGHTBOX ────────────────────────────────────────────────── -->
 <div id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="closeLb(event)">
   <div id="lb-close" onclick="closeLb(null)" aria-label="Cerrar">✕ Cerrar</div>
   <img id="lb-img" src="" alt="">
 </div>
 
-<!-- ── SCRIPTS ─────────────────────────────────────────────────── -->
 <script>
+  /* ── Mobile Menu Toggle ── */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-links a');
+
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
   /* ── Tab switching ── */
   function switchTab(btn, tab) {
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -1319,12 +1266,12 @@
 
   /* ── Smooth active nav link ── */
   var sections = document.querySelectorAll('section[id], header[id]');
-  var navLinks = document.querySelectorAll('.nav-links a');
+  var navLinksDesktop = document.querySelectorAll('.nav-links a');
   var navIo = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         var id = entry.target.id;
-        navLinks.forEach(function(a) {
+        navLinksDesktop.forEach(function(a) {
           a.style.color = a.getAttribute('href') === '#' + id ? 'var(--red)' : '';
         });
       }
