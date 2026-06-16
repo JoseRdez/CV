@@ -112,11 +112,11 @@
     .nav-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
     .nav-toggle.open .hamburger::after { transform: rotate(-45deg); top: 0; }
 
-    /* ─── HERO (Nuevo Layout Corregido) ──────────────────────── */
+    /* ─── HERO ───────────────────────────────────────────────── */
     .hero {
       min-height: 100svh;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr; /* 2 Columnas en escritorio */
+      grid-template-columns: 1.1fr 0.9fr;
       align-items: center;
       padding: 8rem 4rem 5rem;
       position: relative;
@@ -162,7 +162,7 @@
     h1.hero-name {
       font-family: var(--fh);
       font-weight: 900;
-      font-size: clamp(3.5rem, 10vw, 9rem); /* Escalado dinámico */
+      font-size: clamp(3.5rem, 10vw, 9rem);
       line-height: 0.88;
       letter-spacing: -0.03em;
       color: var(--dark);
@@ -218,23 +218,13 @@
       height: 100%;
       object-fit: cover;
     }
-    .ph-placeholder-txt-hero {
-      font-family: var(--fm);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid);
-      text-align: center;
-      padding: 1rem;
-    }
 
-    /* Visibilidad de la foto según el dispositivo */
     .hero-image-mobile { display: none; margin: 2rem 0; }
     .hero-image-desktop { display: flex; justify-content: flex-end; }
     .hero-image-desktop .hero-photo-wrap { width: clamp(250px, 100%, 400px); }
     .hero-image-mobile .hero-photo-wrap { width: 180px; }
 
-    /* STATS FLEXBOX (Evita solapamientos) */
+    /* STATS FLEXBOX */
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
@@ -558,12 +548,11 @@
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
-    .photo-grid .ph { grid-column: span 1; }
-    .photo-grid .ph.wide { grid-column: span 2; }
-    .ph { position: relative; overflow: hidden; background: var(--pale); cursor: pointer; }
+    /* Ajuste de Grid Fotográfico para optimizar composición vertical */
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .ph { position: relative; overflow: hidden; background: var(--pale); cursor: pointer; border-radius: 4px; }
     .ph-inner {
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/4; /* Aspect ratio idóneo para retratos y tomas verticales sin cortes abruptos */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -571,7 +560,9 @@
       gap: 0.7rem;
       transition: background 0.2s;
     }
-    .ph.wide .ph-inner { aspect-ratio: 16/9; }
+    .photo-grid .ph.horizontal { grid-column: span 2; }
+    .ph.horizontal .ph-inner { aspect-ratio: 16/9; } /* Formato panorámico adaptado al recurso horizontal */
+    
     .ph:hover .ph-inner { background: #c0c0bb; }
     .ph img {
       position: absolute;
@@ -582,15 +573,6 @@
       transition: transform 0.5s ease;
     }
     .ph:hover img { transform: scale(1.04); }
-    .ph-placeholder-icon { font-size: 1.6rem; opacity: 0.25; }
-    .ph-placeholder-txt {
-      font-family: var(--fm);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid);
-      opacity: 0.6;
-    }
     .ph-overlay {
       position: absolute;
       inset: 0;
@@ -601,7 +583,7 @@
       transition: background 0.3s;
       pointer-events: none;
     }
-    .ph:hover .ph-overlay { background: rgba(17,17,16,0.45); }
+    .ph:hover .ph-overlay { background: rgba(17,17,16,0.55); }
     .ph-caption {
       font-family: var(--fh);
       font-size: 0.75rem;
@@ -615,9 +597,14 @@
     }
     .ph:hover .ph-caption { opacity: 1; transform: translateY(0); }
 
+    /* Grid de Vídeo Optimizado con miniaturas HD en Lazy-Load */
     .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .vid-frame { position: relative; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; }
-    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .vid-wrap { display: flex; flex-direction: column; }
+    .vid-frame { position: relative; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; cursor: pointer; border-radius: 4px; }
+    .vid-frame img.vid-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .vid-frame:hover img.vid-thumb { transform: scale(1.03); }
+    .vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; z-index: 2; }
+    
     .vid-placeholder {
       position: absolute;
       inset: 0;
@@ -626,29 +613,38 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
+      background: rgba(17,17,16,0.25);
+      transition: background 0.3s;
+      z-index: 1;
     }
+    .vid-frame:hover .vid-placeholder { background: rgba(17,17,16,0.45); }
+    
     .vid-play {
       width: 54px;
       height: 54px;
-      border: 1.5px solid rgba(255,255,255,0.25);
+      border: 2px solid rgba(255,255,255,0.8);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: rgba(17,17,16,0.2);
+      transition: transform 0.2s, background 0.2s;
     }
+    .vid-frame:hover .vid-play { transform: scale(1.08); background: var(--red); border-color: var(--red); }
     .vid-play::after {
       content: '';
       margin-left: 4px;
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 17px solid rgba(255,255,255,0.45);
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid #fff;
     }
     .vid-hint {
       font-family: var(--fm);
       font-size: 0.58rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
     .vid-title { font-family: var(--fh); font-size: 1rem; font-weight: 700; color: var(--dark); margin-top: 0.9rem; }
     .vid-meta { font-family: var(--fb); font-size: 0.85rem; letter-spacing: 0.07em; color: var(--mid); margin-top: 0.2rem; }
@@ -750,7 +746,7 @@
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE (Mejorado para Móvil) ──────────────────── */
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 980px) {
       nav { padding: 1rem 1.5rem; }
       .nav-toggle { display: block; }
@@ -769,7 +765,6 @@
       .nav-links.open { transform: translateY(0); }
       .nav-links a { font-size: 1.4rem; font-weight: 700; color: var(--dark); }
 
-      /* Ajustes Hero para móvil */
       .hero {
         grid-template-columns: 1fr;
         padding: 8rem 1.5rem 5rem 1.5rem;
@@ -785,9 +780,8 @@
       .tl-spine { display: none; }
       .tl-date { text-align: left; padding-top: 0; margin-bottom: 0.5rem; }
       
-      .photo-grid { grid-template-columns: 1fr 1fr; }
-      .photo-grid .ph.wide { grid-column: span 1; }
-      .ph.wide .ph-inner { aspect-ratio: 4/3; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .photo-grid .ph.horizontal { grid-column: span 2; }
       .video-grid { grid-template-columns: 1fr; }
     }
 
@@ -795,6 +789,8 @@
       h1.hero-name { font-size: clamp(3.2rem, 16vw, 4.5rem); }
       .hero-stats { gap: 1.5rem; justify-content: space-between; }
       .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid .ph.horizontal { grid-column: span 1; }
+      .ph.horizontal .ph-inner { aspect-ratio: 3/4; }
       .skills-wrap { grid-template-columns: 1fr; }
       .s-head { flex-direction: column; align-items: flex-start; gap: 0.8rem; margin-bottom: 3rem; }
       .s-rule { width: 100%; height: 1px; flex: none; }
@@ -835,7 +831,7 @@
     
     <div class="hero-image-mobile">
       <div class="hero-photo-wrap">
-        <div class="ph-placeholder-txt-hero">Foto<br>Perfil</div>
+        <img src="resources/fotografias/profile-picture.jpeg" alt="José Rodríguez">
       </div>
     </div>
 
@@ -863,7 +859,7 @@
 
   <div class="hero-image-desktop">
     <div class="hero-photo-wrap">
-      <div class="ph-placeholder-txt-hero">Foto<br>Perfil</div>
+      <img src="resources/fotografias/profile-picture.jpeg" alt="José Rodríguez">
     </div>
   </div>
 </header>
@@ -1056,44 +1052,60 @@
   <div class="tab-pane active" id="tab-photos">
     <div class="photo-grid">
 
-      <div class="ph wide" onclick="openLb(this)">
-        <div class="ph-inner">
-          <div class="ph-placeholder-icon">📷</div>
-          <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto1.jpg</div>
-        </div>
-        <div class="ph-overlay"><span class="ph-caption">Proyecto destacado</span></div>
-      </div>
-
+      <!-- Imagen 1: IMG_0928.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
-          <div class="ph-placeholder-icon">📷</div>
-          <div class="ph-placeholder-txt">img/foto2.jpg</div>
+          <img src="resources/fotografias/IMG_0928.jpg" alt="Operación de Steadicam — Rodaje Exterior">
         </div>
-        <div class="ph-overlay"><span class="ph-caption">Evento deportivo</span></div>
+        <div class="ph-overlay"><span class="ph-caption">Rodaje Exterior · Steadicam</span></div>
       </div>
 
+      <!-- Imagen 2: IMG_9774.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
-          <div class="ph-placeholder-icon">📷</div>
-          <div class="ph-placeholder-txt">img/foto3.jpg</div>
+          <img src="resources/fotografias/IMG_9774.jpg" alt="Dirección de Fotografía — Estilo Urbano">
         </div>
-        <div class="ph-overlay"><span class="ph-caption">Plató</span></div>
+        <div class="ph-overlay"><span class="ph-caption">Dirección de Fotografía</span></div>
       </div>
 
-      <div class="ph wide" onclick="openLb(this)">
-        <div class="ph-inner">
-          <div class="ph-placeholder-icon">📷</div>
-          <div class="ph-placeholder-txt">Añade tu foto aquí · img/foto4.jpg</div>
-        </div>
-        <div class="ph-overlay"><span class="ph-caption">MonteCarloFilms</span></div>
-      </div>
-
+      <!-- Imagen 3: IMG_9818.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
-          <div class="ph-placeholder-icon">📷</div>
-          <div class="ph-placeholder-txt">img/foto5.jpg</div>
+          <img src="resources/fotografias/IMG_9818.jpg" alt="Retrato en Set — Videoclip Musical">
         </div>
-        <div class="ph-overlay"><span class="ph-caption">Steadicam rig</span></div>
+        <div class="ph-overlay"><span class="ph-caption">Producción Musical · Set</span></div>
+      </div>
+
+      <!-- Imagen 4: bucle-album.jpg (Horizontal / Panorámica) -->
+      <div class="ph horizontal" onclick="openLb(this)">
+        <div class="ph-inner">
+          <img src="resources/fotografias/bucle-album.jpg" alt="Detalle de Escena — Texturas e Iluminación">
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Arte & Texturas · MonteCarloFilms</span></div>
+      </div>
+
+      <!-- Imagen 5: PNG editado 2-16.jpg -->
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <img src="resources/fotografias/PNG editado 2-16.jpg" alt="Composición de Plano — Rodaje Narrativo">
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Composición Narrativa</span></div>
+      </div>
+
+      <!-- Imagen 6: Casa-Morgano.jpg -->
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <img src="resources/fotografias/Casa-Morgano.jpg" alt="Bodegón Cinematográfico — Casa Morgano">
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Fotografía Estática · Casa Morgano</span></div>
+      </div>
+
+      <!-- Imagen 7: portada-album.jpg -->
+      <div class="ph" onclick="openLb(this)">
+        <div class="ph-inner">
+          <img src="resources/fotografias/portada-album.jpg" alt="Iluminación Expresiva — Contraste en Clave Oscura">
+        </div>
+        <div class="ph-overlay"><span class="ph-caption">Clave Oscura · Dirección de Arte</span></div>
       </div>
 
     </div>
@@ -1102,33 +1114,53 @@
   <div class="tab-pane" id="tab-videos">
     <div class="video-grid">
 
+      <!-- Video 1: Cortometraje -->
       <div class="vid-wrap">
-        <div class="vid-frame">
-          <iframe src="https://www.youtube.com/embed/WTCrsmgKMig" title="Cortometraje" loading="lazy" allowfullscreen></iframe>
+        <div class="vid-frame" onclick="loadVideo(this, 'WTCrsmgKMig')">
+          <img src="https://img.youtube.com/vi/WTCrsmgKMig/maxresdefault.jpg" alt="Cortometraje Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/WTCrsmgKMig/hqdefault.jpg'">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <span class="vid-hint">Click para reproducir en HD</span>
+          </div>
         </div>
         <div class="vid-title">Cortometraje</div>
         <div class="vid-meta">Operación de Cámara</div>
       </div>
 
+      <!-- Video 2: Trabajo en Steadicam -->
       <div class="vid-wrap">
-        <div class="vid-frame">
-          <iframe src="https://www.youtube.com/embed/bOQfwcSG9bk" title="Trabajo en Steadicam" loading="lazy" allowfullscreen></iframe>
+        <div class="vid-frame" onclick="loadVideo(this, 'bOQfwcSG9bk')">
+          <img src="https://img.youtube.com/vi/bOQfwcSG9bk/maxresdefault.jpg" alt="Trabajo en Steadicam Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/bOQfwcSG9bk/hqdefault.jpg'">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <span class="vid-hint">Click para reproducir en HD</span>
+          </div>
         </div>
         <div class="vid-title">Trabajo en Steadicam</div>
         <div class="vid-meta">Steadicam</div>
       </div>
 
+      <!-- Video 3: Vídeo Promo Página Web -->
       <div class="vid-wrap">
-        <div class="vid-frame">
-          <iframe src="https://www.youtube.com/embed/h9y3aLxmEDI" title="Vídeo Promo Página Web" loading="lazy" allowfullscreen></iframe>
+        <div class="vid-frame" onclick="loadVideo(this, 'h9y3aLxmEDI')">
+          <img src="https://img.youtube.com/vi/h9y3aLxmEDI/maxresdefault.jpg" alt="Vídeo Promo Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/h9y3aLxmEDI/hqdefault.jpg'">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <span class="vid-hint">Click para reproducir en HD</span>
+          </div>
         </div>
         <div class="vid-title">Vídeo Promo Página Web</div>
         <div class="vid-meta">MonteCarloFilms</div>
       </div>
 
+      <!-- Video 4: Videoclip Dirigido -->
       <div class="vid-wrap">
-        <div class="vid-frame">
-          <iframe src="https://www.youtube.com/embed/YYlLeiW7WC8" title="Videoclip Dirigido" loading="lazy" allowfullscreen></iframe>
+        <div class="vid-frame" onclick="loadVideo(this, 'YYlLeiW7WC8')">
+          <img src="https://img.youtube.com/vi/YYlLeiW7WC8/maxresdefault.jpg" alt="Videoclip Dirigido Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/YYlLeiW7WC8/hqdefault.jpg'">
+          <div class="vid-placeholder">
+            <div class="vid-play"></div>
+            <span class="vid-hint">Click para reproducir en HD</span>
+          </div>
         </div>
         <div class="vid-title">Videoclip Dirigido</div>
         <div class="vid-meta">Dirección</div>
@@ -1206,6 +1238,11 @@
     document.querySelectorAll('.pf-tab').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + tab).classList.add('active');
     btn.classList.add('active');
+  }
+
+  /* ── Lazy Video Loader (Evita miniaturas borrosas y optimiza recursos) ── */
+  function loadVideo(container, videoId) {
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
   }
 
   /* ── Lightbox ── */
