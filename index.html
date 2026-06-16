@@ -6,17 +6,18 @@
   <title>José Rodríguez — Steadicam Operator & Filmmaker</title>
   <meta name="description" content="Steadicam Operator & Filmmaker. Creador de MonteCarloFilms. Especializado en cámara, iluminación y eventos deportivos. Madrid.">
 
+  <!-- Tipografías: Geist para textos técnicos/números y Coolvetica para un impacto brutalista -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/coolvetica" rel="stylesheet">
 
   <style>
-    /* ─── RESET ─────────────────────────────────────────────── */
+    /* ─── RESET & REGLAS BASE ────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
 
-    /* ─── TOKENS ─────────────────────────────────────────────── */
+    /* ─── DESIGN TOKENS (Variables Globales) ──────────────────── */
     :root {
       --bg:    #ebebe7;
       --red:   #b6282d;
@@ -36,7 +37,7 @@
       overflow-x: hidden;
     }
 
-    /* ─── NAVIGATION ─────────────────────────────────────────── */
+    /* ─── NAVEGACIÓN (Fixed + Blur Efecto Lente) ──────────────── */
     nav {
       position: fixed;
       inset: 0 0 auto 0;
@@ -78,7 +79,7 @@
     }
     .nav-links a:hover { color: var(--red); }
 
-    /* Hamburger Button */
+    /* Menú Hamburguesa (Mobile) */
     .nav-toggle {
       display: none;
       background: none;
@@ -107,12 +108,12 @@
     .hamburger::before { top: -6px; }
     .hamburger::after { top: 6px; }
 
-    /* Open Menu State */
+    /* Transformación CSS para el estado Open de la hamburguesa */
     .nav-toggle.open .hamburger { background: transparent; }
     .nav-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
     .nav-toggle.open .hamburger::after { transform: rotate(-45deg); top: 0; }
 
-    /* ─── HERO ───────────────────────────────────────────────── */
+    /* ─── HERO SECTION (Estructura e Impacto Visual) ─────────── */
     .hero {
       min-height: 100svh;
       display: grid;
@@ -123,6 +124,7 @@
       overflow: hidden;
       gap: 2rem;
     }
+    /* Grid de fondo (Estética de guías de cámara/foco) */
     .hero::before {
       content: '';
       position: absolute;
@@ -159,6 +161,7 @@
       background: var(--red);
     }
     
+    /* Escalado tipográfico fluido mediante clamp */
     h1.hero-name {
       font-family: var(--fh);
       font-weight: 900;
@@ -170,9 +173,7 @@
     }
     h1.hero-name .r { color: var(--red); display: block; }
     
-    .hero-desc {
-      max-width: 480px;
-    }
+    .hero-desc { max-width: 480px; }
     .hero-desc p {
       font-family: var(--fb);
       font-size: 1.05rem;
@@ -201,7 +202,7 @@
     .hero-cta:hover { color: var(--red); border-color: var(--red); }
     .hero-cta::after { content: '↓'; }
 
-    /* FOTO DE PERFIL CIRCULAR */
+    /* Máscara circular para retrato */
     .hero-photo-wrap {
       border-radius: 50%;
       border: 2px solid var(--red);
@@ -224,7 +225,7 @@
     .hero-image-desktop .hero-photo-wrap { width: clamp(250px, 100%, 400px); }
     .hero-image-mobile .hero-photo-wrap { width: 180px; }
 
-    /* STATS FLEXBOX */
+    /* Métricas / Highlights rápidos */
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
@@ -251,7 +252,7 @@
       margin-top: 0.3rem;
     }
 
-    /* ─── FILM TICKER ─────────────────────────────────────────── */
+    /* ─── MARQUESINA / FILM TICKER (Animación Infinita) ───────── */
     .film-ticker {
       background: var(--dark);
       padding: 0;
@@ -264,9 +265,10 @@
       display: flex;
       gap: 0;
       animation: ticker-move 28s linear infinite;
-      will-change: transform;
+      will-change: transform; /* Optimización de renderizado por GPU */
     }
     .film-ticker-track:hover { animation-play-state: paused; }
+    
     @keyframes ticker-move {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
@@ -288,7 +290,7 @@
     }
     .ticker-seg .red { color: var(--red); margin: 0 0.8rem; font-size: 0.5rem; }
 
-    /* ─── SECTION SHELL ──────────────────────────────────────── */
+    /* ─── MAQUETACIÓN DE SECCIONES (Shells) ──────────────────── */
     section.s { padding: 7rem 4rem; }
     .s-head {
       display: flex;
@@ -313,6 +315,7 @@
     }
     .s-rule { flex: 1; height: 1px; background: var(--pale); }
     
+    /* Variantes cromáticas estructurales */
     .s--dark { background: var(--dark); }
     .s--dark .s-num { color: rgba(182,40,45,0.8); }
     .s--dark .s-title { color: var(--red); }
@@ -323,7 +326,7 @@
     .s--red .s-title { color: var(--bg); }
     .s--red .s-rule { background: rgba(235,235,231,0.2); }
 
-    /* ─── ABOUT ──────────────────────────────────────────────── */
+    /* ─── SECCIÓN: PERFIL / SOBRE MÍ ─────────────────────────── */
     .about-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -350,6 +353,7 @@
     .about-body + .about-body { margin-top: 1.2rem; }
     .about-body strong { color: var(--dark); font-weight: 400; }
 
+    /* Tabla metadatos personales */
     .about-info { display: flex; flex-direction: column; }
     .info-row {
       display: flex;
@@ -375,7 +379,7 @@
     .i-val a { color: var(--dark); text-decoration: none; transition: color 0.2s; }
     .i-val a:hover { color: var(--red); }
 
-    /* ─── EXPERIENCE ─────────────────────────────────────────── */
+    /* ─── SECCIÓN: EXPERIENCIA / TIMELINE ────────────────────── */
     .timeline { display: flex; flex-direction: column; }
     .tl-item {
       display: grid;
@@ -383,6 +387,7 @@
       gap: 0 3.5rem;
       padding: 3.5rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      /* Preparación para transiciones mediante IntersectionObserver */
       opacity: 0;
       transform: translateY(18px);
       transition: opacity 0.55s ease, transform 0.55s ease;
@@ -398,6 +403,7 @@
       text-align: right;
       padding-top: 0.25rem;
     }
+    /* Eje de la línea temporal */
     .tl-spine { background: rgba(255,255,255,0.1); position: relative; }
     .tl-spine::before {
       content: '';
@@ -447,7 +453,7 @@
       color: var(--red);
     }
 
-    /* ─── EDUCATION ──────────────────────────────────────────── */
+    /* ─── SECCIÓN: FORMACIÓN Y CERTIFICACIONES ───────────────── */
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
     .sub-label {
       font-family: var(--fm);
@@ -489,8 +495,13 @@
       margin-top: 0.35rem;
     }
 
-    /* ─── SKILLS ─────────────────────────────────────────────── */
-    .skills-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: rgba(235,235,231,0.15); }
+    /* ─── SECCIÓN: SKILLS ────────────────────────────────────── */
+    .skills-wrap { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+      gap: 1px; 
+      background: rgba(235,235,231,0.15); 
+    }
     .skill-card {
       background: var(--red);
       padding: 1.4rem 1.6rem;
@@ -510,7 +521,7 @@
       color: var(--bg);
     }
 
-    /* ─── PORTFOLIO ──────────────────────────────────────────── */
+    /* ─── SECCIÓN: PORTFOLIO & MEDIAS ────────────────────────── */
     .pf-intro {
       font-family: var(--fb);
       font-size: 1.05rem;
@@ -548,11 +559,11 @@
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    /* Ajuste de Grid Fotográfico para optimizar composición vertical */
+    /* Grid Fotográfico con control estricto de Aspect Ratio */
     .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .ph { position: relative; overflow: hidden; background: var(--pale); cursor: pointer; border-radius: 4px; }
     .ph-inner {
-      aspect-ratio: 3/4; /* Aspect ratio idóneo para retratos y tomas verticales sin cortes abruptos */
+      aspect-ratio: 3/4; /* Proporción ideal para encuadres verticales y retratos fílmicos */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -560,8 +571,9 @@
       gap: 0.7rem;
       transition: background 0.2s;
     }
+    /* Clase modificadora para assets panorámicos nativos */
     .photo-grid .ph.horizontal { grid-column: span 2; }
-    .ph.horizontal .ph-inner { aspect-ratio: 16/9; } /* Formato panorámico adaptado al recurso horizontal */
+    .ph.horizontal .ph-inner { aspect-ratio: 16/9; } 
     
     .ph:hover .ph-inner { background: #c0c0bb; }
     .ph img {
@@ -573,6 +585,8 @@
       transition: transform 0.5s ease;
     }
     .ph:hover img { transform: scale(1.04); }
+    
+    /* Overlay cinematográfico interactivo (Caption en hover) */
     .ph-overlay {
       position: absolute;
       inset: 0;
@@ -597,7 +611,7 @@
     }
     .ph:hover .ph-caption { opacity: 1; transform: translateY(0); }
 
-    /* Grid de Vídeo Optimizado con miniaturas HD en Lazy-Load */
+    /* Grid de Vídeo Optimizado para evitar bloqueos por carga de API de YT */
     .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .vid-wrap { display: flex; flex-direction: column; }
     .vid-frame { position: relative; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; cursor: pointer; border-radius: 4px; }
@@ -619,6 +633,7 @@
     }
     .vid-frame:hover .vid-placeholder { background: rgba(17,17,16,0.45); }
     
+    /* Icono Play puro CSS */
     .vid-play {
       width: 54px;
       height: 54px;
@@ -649,7 +664,7 @@
     .vid-title { font-family: var(--fh); font-size: 1rem; font-weight: 700; color: var(--dark); margin-top: 0.9rem; }
     .vid-meta { font-family: var(--fb); font-size: 0.85rem; letter-spacing: 0.07em; color: var(--mid); margin-top: 0.2rem; }
 
-    /* ─── CONTACT ────────────────────────────────────────────── */
+    /* ─── SECCIÓN: CONTACTO ──────────────────────────────────── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
     .contact-headline {
       font-family: var(--fh);
@@ -682,6 +697,7 @@
       transition: background 0.2s, border-color 0.2s;
     }
     .c-link:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    /* Animación de barra lateral en hover */
     .c-link::before {
       content: '';
       position: absolute;
@@ -716,7 +732,7 @@
     .foot-name { font-family: var(--fh); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
     .foot-copy { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.15); }
 
-    /* ─── LIGHTBOX ───────────────────────────────────────────── */
+    /* ─── INTERFAZ LIGHTBOX (Modal nativo para fotos) ─────────── */
     #lb { display: none; position: fixed; inset: 0; background: rgba(10,10,10,0.94); z-index: 2000; align-items: center; justify-content: center; cursor: pointer; }
     #lb.open { display: flex; }
     #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
@@ -733,7 +749,7 @@
       cursor: pointer;
     }
 
-    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    /* ─── RENDER PERFORMANCE ANIMATIONS ─────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -746,7 +762,7 @@
     .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    /* ─── RESPONSIVE DESIGN (Media Queries) ──────────────────── */
     @media (max-width: 980px) {
       nav { padding: 1rem 1.5rem; }
       .nav-toggle { display: block; }
@@ -797,6 +813,7 @@
       footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
     }
 
+    /* Respeto estricto a las preferencias del sistema del usuario */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
@@ -804,6 +821,7 @@
 </head>
 <body>
 
+<!-- Estructura semántica de navegación accesible -->
 <nav aria-label="Navegación principal">
   <div class="nav-logo">José <em>Rodríguez</em></div>
   
@@ -864,6 +882,7 @@
   </div>
 </header>
 
+<!-- Marquee de tecnología/servicios oculto para lectores de pantalla por redundancia -->
 <div class="film-ticker" aria-hidden="true">
   <div class="film-ticker-track" id="ticker">
     <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
@@ -877,6 +896,7 @@
     <div class="ticker-seg"><span>Cambridge B2 First</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Filmmaker</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Madrid, España</span><span class="red">◆</span></div>
+    <!-- Duplicación del track idéntica para asegurar el loop infinito sin saltos visuales -->
     <div class="ticker-seg"><span>MonteCarloFilms</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Steadicam Operator</span><span class="red">◆</span></div>
     <div class="ticker-seg"><span>Camera Op — 1ª RFEF</span><span class="red">◆</span></div>
@@ -899,7 +919,7 @@
   </div>
   <div class="about-grid">
     <div>
-      <p class="about-quote">"Si alguna vez encuentro un extraterrestre no le diría nada, prefiero escucharle" - Steven Speilberg</p>
+      <p class="about-quote">"Si alguna vez encuentro un extraterrestre no le diría nada, prefiero escucharle" - Steven Spielberg</p>
       <p class="about-body">Filmmaker y operador de Steadicam con experiencia en producción audiovisual, eventos deportivos de alto nivel, iluminación y montaje. Fundador de <strong>MonteCarloFilms</strong>, desde donde desarrollo proyectos propios con una visión cinematográfica definida.</p>
       <p class="about-body" style="margin-top:1.2rem;">Con formación técnica en la <strong>Escuela CEV</strong> y certificación especializada en Steadicam por la <strong>Escuela CES</strong>, combino el dominio técnico con una sensibilidad estética que se refleja en cada toma.</p>
     </div>
@@ -1052,49 +1072,42 @@
   <div class="tab-pane active" id="tab-photos">
     <div class="photo-grid">
 
-      <!-- Imagen 1: IMG_0928.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/IMG_0928.JPG" alt="Operación de Steadicam — Rodaje Exterior">
         </div>
       </div>
 
-      <!-- Imagen 2: IMG_9774.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/IMG_9774.JPG" alt="Dirección de Fotografía — Estilo Urbano">
         </div>
       </div>
 
-      <!-- Imagen 3: IMG_9818.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/IMG_9818.JPG" alt="Retrato en Set — Videoclip Musical">
         </div>
       </div>
 
-      <!-- Imagen 4: PNG editado 2-16.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/PNG editado 2-16.jpg" alt="Composición de Plano — Rodaje Narrativo">
         </div>
       </div>
 
-      <!-- Imagen 5: bucle-album.jpg (Horizontal / Panorámica) -->
       <div class="ph horizontal" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/bucle-album.jpeg" alt="Detalle de Escena — Texturas e Iluminación">
         </div>
       </div>
 
-      <!-- Imagen 6: Casa-Morgano.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/Casa-Morgano.jpeg" alt="Bodegón Cinematográfico — Casa Morgano">
         </div>
       </div>
 
-      <!-- Imagen 7: portada-album.jpg -->
       <div class="ph" onclick="openLb(this)">
         <div class="ph-inner">
           <img src="resources/fotografias/portada-album.jpeg" alt="Iluminación Expresiva — Contraste en Clave Oscura">
@@ -1107,7 +1120,6 @@
   <div class="tab-pane" id="tab-videos">
     <div class="video-grid">
 
-      <!-- Video 1: Cortometraje -->
       <div class="vid-wrap">
         <div class="vid-frame" onclick="loadVideo(this, 'WTCrsmgKMig')">
           <img src="https://img.youtube.com/vi/WTCrsmgKMig/maxresdefault.jpg" alt="Cortometraje Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/WTCrsmgKMig/hqdefault.jpg'">
@@ -1120,7 +1132,6 @@
         <div class="vid-meta">Dirección</div>
       </div>
 
-      <!-- Video 2: Trabajo en Steadicam -->
       <div class="vid-wrap">
         <div class="vid-frame" onclick="loadVideo(this, 'bOQfwcSG9bk')">
           <img src="https://img.youtube.com/vi/bOQfwcSG9bk/maxresdefault.jpg" alt="Trabajo en Steadicam Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/bOQfwcSG9bk/hqdefault.jpg'">
@@ -1133,7 +1144,6 @@
         <div class="vid-meta">Steadicam</div>
       </div>
 
-      <!-- Video 3: Vídeo Promo Página Web -->
       <div class="vid-wrap">
         <div class="vid-frame" onclick="loadVideo(this, 'h9y3aLxmEDI')">
           <img src="https://img.youtube.com/vi/h9y3aLxmEDI/maxresdefault.jpg" alt="Vídeo Promo Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/h9y3aLxmEDI/hqdefault.jpg'">
@@ -1146,7 +1156,6 @@
         <div class="vid-meta">MonteCarloFilms</div>
       </div>
 
-      <!-- Video 4: Videoclip Dirigido -->
       <div class="vid-wrap">
         <div class="vid-frame" onclick="loadVideo(this, 'YYlLeiW7WC8')">
           <img src="https://img.youtube.com/vi/YYlLeiW7WC8/maxresdefault.jpg" alt="Videoclip Dirigido Thumbnail" class="vid-thumb" onerror="this.src='https://img.youtube.com/vi/YYlLeiW7WC8/hqdefault.jpg'">
@@ -1200,13 +1209,14 @@
   <div class="foot-copy">Steadicam Operator · Filmmaker · Madrid</div>
 </footer>
 
+<!-- Elemento accesible por teclado para cerrar modales -->
 <div id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada" onclick="closeLb(event)">
   <div id="lb-close" onclick="closeLb(null)" aria-label="Cerrar">✕ Cerrar</div>
   <img id="lb-img" src="" alt="">
 </div>
 
 <script>
-  /* ── Mobile Menu Toggle ── */
+  /* ── INTERRUPTOR DE MENÚ MOBILE ───────────────────────────── */
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   const navItems = document.querySelectorAll('.nav-links a');
@@ -1214,6 +1224,7 @@
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('open');
     navLinks.classList.toggle('open');
+    // Lock del scroll para evitar desbordamiento con el menú abierto
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
 
@@ -1225,7 +1236,7 @@
     });
   });
 
-  /* ── Tab switching ── */
+  /* ── SISTEMA DE PESTAÑAS (Portfolio) ───────────────────────── */
   function switchTab(btn, tab) {
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.pf-tab').forEach(b => b.classList.remove('active'));
@@ -1233,12 +1244,15 @@
     btn.classList.add('active');
   }
 
-  /* ── Lazy Video Loader (Evita miniaturas borrosas y optimiza recursos) ── */
+  /* ── LAZY VIDEO LOADER ────────────────────────────────────── */
+  /* Inyecta el iframe solo tras interacción activa del usuario. 
+     Previene la precarga masiva de scripts pesados de la API de YouTube, 
+     mejorando drásticamente las métricas de Core Web Vitals (LCP, TTI). */
   function loadVideo(container, videoId) {
     container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
   }
 
-  /* ── Lightbox ── */
+  /* ── LIGHTBOX INTERACTIVO (Gestiòn de estados) ─────────────── */
   function openLb(el) {
     var img = el.querySelector('img');
     if (!img) return;
@@ -1247,30 +1261,34 @@
     document.getElementById('lb').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+  
   function closeLb(e) {
+    // Evita cierres accidentales al pinchar fuera de la zona de control
     if (e && e.target !== document.getElementById('lb') && e.target !== document.getElementById('lb-close')) return;
     document.getElementById('lb').classList.remove('open');
     document.body.style.overflow = '';
   }
+  
+  // Accesibilidad por teclado (Cierre nativo con tecla ESC)
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeLb(null);
   });
 
-  /* ── Scroll reveal ── */
+  /* ── SCROLL REVEAL (IntersectionObserver API) ──────────────── */
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        io.unobserve(entry.target);
+        io.unobserve(entry.target); // Libera memoria destruyendo la escucha una vez ejecutada
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.12 }); // Dispara la animación al asomar un 12% del componente
 
   document.querySelectorAll('.tl-item, .reveal').forEach(function(el) {
     io.observe(el);
   });
 
-  /* ── Smooth active nav link ── */
+  /* ── ACTIVE NAV LINK TRACKING (Spy Scroll Efecto) ─────────── */
   var sections = document.querySelectorAll('section[id], header[id]');
   var navLinksDesktop = document.querySelectorAll('.nav-links a');
   var navIo = new IntersectionObserver(function(entries) {
@@ -1282,7 +1300,8 @@
         });
       }
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
+  }, { rootMargin: '-40% 0px -55% 0px' }); // Ajuste del viewport de escucha centrado en pantalla
+  
   sections.forEach(function(s) { navIo.observe(s); });
 </script>
 
